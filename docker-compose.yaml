@@ -1,0 +1,17 @@
+services:
+  backend: 
+    build: ./
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+  database:
+    image: mcp/postgres:latest
+    environment:
+      - POSTGRES_USER= user
+      - POSTGRES_PASSWORD= password
+      - POSTGRES_DB= icaseirodb
+
+networks:
+  app-network:
+    driver: bridge

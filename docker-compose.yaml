@@ -5,12 +5,21 @@ services:
       - "3000:3000"
     networks:
       - app-network
+    environment:
+      - DATABASE_URL: postgresql://postgres:postgres@database:5432/icaseirodb?schema=public
+    depends_on:
+      - database
+      
   database:
     image: mcp/postgres:latest
     environment:
-      - POSTGRES_USER= user
-      - POSTGRES_PASSWORD= password
-      - POSTGRES_DB= icaseirodb
+      - POSTGRES_USER: "postgres" 
+      - POSTGRES_PASSWORD: "postgres" 
+      - POSTGRES_DB: "icaseirodb" 
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
 
 networks:
   app-network:

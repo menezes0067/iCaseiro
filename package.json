@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "tsx src/routes/main.ts"
+    "dev": "tsx src/server.ts"
   },
   "keywords": [],
   "author": "",

@@ -8,10 +8,11 @@ const userService = new UserService(userRepository);
 
 export const CreateUser = async (req: FastifyRequest, rep: FastifyReply) => {
     try {
-       const userData = UserSchema.parse(req.body) 
+       const userData = UserSchema.parse(req.body)  
        const user = userService.execute(userData)
        rep.code(201).send(user)
      }catch (error) { 
+        console.log(error)
         rep.code(500).send({error: 'user not created'}) 
     }
 }

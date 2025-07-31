@@ -1,7 +1,7 @@
 import fastify, { FastifyInstance } from 'fastify';
 import UserRoute from './routes/user-route';
 
-const app: FastifyInstance = fastify({ logger: true });
+const app: FastifyInstance = fastify({});
 
 app.register(UserRoute)
 

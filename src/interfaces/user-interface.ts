@@ -1,5 +1,4 @@
 import { TypeUser } from "@prisma/client"
-import { UUIDTypes } from "uuid"
 
 export interface User {
     id: string
@@ -10,7 +9,7 @@ export interface User {
 }
 
 export interface UserCreate {
-    id: string 
+    id?: string | null | undefined
     name: string
     email?: string
     password: string

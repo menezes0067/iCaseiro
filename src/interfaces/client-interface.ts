@@ -5,7 +5,7 @@ export interface Client {
 }
 
 export interface CreateClient {
-  id: string
+  id?: string | null | undefined
   birthDate: Date  
   client_user_id: string
 }

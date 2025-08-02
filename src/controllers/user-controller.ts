@@ -5,7 +5,7 @@ import {FastifyRequest, FastifyReply} from "fastify";
 
 
 const userRepository = new UserRepositoryPrisma
-const userService = new UserService(userRepository);
+const userService = new UserService(userRepository)
 
 export const CreateUser = async (req: FastifyRequest, rep: FastifyReply) => {
     try {

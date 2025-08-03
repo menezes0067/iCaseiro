@@ -1,3 +1,5 @@
+import { User } from "./user-interface"
+
 export interface Client {
     id: string
     birthDate: Date 

@@ -4,7 +4,8 @@ import { v4 as uuidv4 } from 'uuid'
 
 class UserRepositoryPrisma implements UserRepository {
    async create(data: UserCreate): Promise<User> {
-      const created = await prisma.user.create({ data: {
+      const created = await prisma.user.create({ 
+         data: {
             id: data.id || uuidv4(),
             name: data.name,
             email: data.email,
@@ -13,24 +14,24 @@ class UserRepositoryPrisma implements UserRepository {
          }
       });
      
-     return {
+      return {
         id: created.id,
         name: created.name,
         email: created.email || undefined,
         password: created.password,
         type: created.type  
-     }
+      }
    }    
 
-   async findUserById(data: { id: string; }): Promise<any> {
-      const find = await prisma.user.findUnique({ where: {
-         id: data.id  
-      } 
-   });
+   async findUserById(data: { id: string }): Promise<{ id: string | undefined }> {
+      const find = await prisma.user.findUnique({ 
+         where: { id: data.id  }, 
+         select: { id: true }
+      });
 
-   return {
-      id: find?.id
-    }
+      return {
+         id: find?.id
+      }
    }
 }
 

@@ -1,7 +1,7 @@
 import { TypeUser } from "@prisma/client"
 
 export interface User {
-    id: string
+    id?: string
     name: string
     email?: string
     password: string
@@ -18,5 +18,5 @@ export interface UserCreate {
 
 export interface UserRepository {
     create(data: UserCreate): Promise<User>
-    findUserById(data: { id : string }): Promise<any>
+    findUserById(data: { id : string }): Promise<{ id: string | undefined}>
 }

@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { TypeUser } from '@prisma/client';
 
 export const UserSchema = z.object({
-    id: z.uuidv4().nullable().optional(),
+    id: z.uuidv4().optional(),
     name: z.string(),
     email: z.string(),
     password: z.string(),

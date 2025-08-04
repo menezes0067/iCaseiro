@@ -18,5 +18,5 @@ export interface UserCreate {
 
 export interface UserRepository {
     create(data: UserCreate): Promise<User>
-    findUserById(data: { id : string }): Promise<{ id: string | undefined}>
+    findUserById(data: { id : string }): Promise<{ id: string | undefined }>
 }

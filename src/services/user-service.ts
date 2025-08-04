@@ -12,7 +12,7 @@ export class UserService {
         const findId = await this.userRepository.findUserById(data)
 
         if (!findId) {
-            throw new Error('User not created')
+            throw new Error('User not found!')
         }
 
         return findId

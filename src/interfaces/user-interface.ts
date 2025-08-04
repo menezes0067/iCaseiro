@@ -9,7 +9,7 @@ export interface User {
 }
 
 export interface UserCreate {
-    id?: string | null | undefined
+    id?: string | undefined
     name: string
     email?: string
     password: string

@@ -1,7 +1,6 @@
 import { prisma } from '../database/prisma-client'
 import { Client, CreateClient, IClientRepository } from "../interfaces/client-interface";
 import { v4 as uuidv4 } from 'uuid';
-import { User } from '../interfaces/user-interface';
 
 export class ClientRepositoryPrisma implements IClientRepository {
     async create(data: CreateClient): Promise<Client> {

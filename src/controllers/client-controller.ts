@@ -11,7 +11,7 @@ const clientService = new ClientService(clientRepository, userRepository)
 export const CreateClient = async(req: FastifyRequest, rep: FastifyReply) => {
     try {
        const clientData = ClientSchema.parse(req.body)
-       const client = clientService.execute(clientData)
+       const client = await clientService.execute(clientData)
        rep.code(201).send(client)
     } catch (error) {
         console.log(error)

@@ -18,7 +18,7 @@ model User {
   email String? @unique @db.VarChar(70)
   password String
   type TypeUser 
-  client Client[]
+  client Client[] 
   employee Employee[]
 }
 
@@ -26,14 +26,14 @@ model Client {
   id String @id @default(uuid())  
   birthDate DateTime
   orders Order[]
-  client_user_id String
+  client_user_id String @unique
   user User @relation(fields: [client_user_id], references: [id])
 }
 
 model Employee {
   id String @id @default(uuid())
   orders Order[]
-  employee_user_id String
+  employee_user_id String @unique
   user User @relation(fields: [employee_user_id], references: [id]) 
 }
 

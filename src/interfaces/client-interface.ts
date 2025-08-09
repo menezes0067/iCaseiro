@@ -12,4 +12,5 @@ export interface CreateClient {
 
 export interface IClientRepository {
   create(data: CreateClient): Promise<Client>  
+  existsByClientUserId(data: { client_user_id: string }): Promise<boolean> // Lembrar de altera quando voltar da facul! 
 } 

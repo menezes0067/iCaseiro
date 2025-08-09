@@ -1,4 +1,4 @@
-import { UserCreate, UserRepository, User } from "../interfaces/user-interface";
+import { UserCreate, UserRepository, User, UserInformation } from "../interfaces/user-interface";
 
 export class UserService {
     constructor(private userRepository: UserRepository){}
@@ -17,4 +17,5 @@ export class UserService {
 
         return findId
     }
+
 }

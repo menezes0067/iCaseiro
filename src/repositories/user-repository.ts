@@ -1,5 +1,6 @@
+import { UserInfo } from 'os';
 import { prisma } from '../database/prisma-client';
-import { User, UserRepository, UserCreate} from '../interfaces/user-interface';
+import { User, UserRepository, UserCreate, UserInformation} from '../interfaces/user-interface';
 import { v4 as uuidv4 } from 'uuid'
 
 class UserRepositoryPrisma implements UserRepository {
@@ -32,6 +33,18 @@ class UserRepositoryPrisma implements UserRepository {
       return {
          id: find?.id
       }
+   }
+
+   async getUserInformation(data: UserInformation): Promise<UserInformation> {
+     const findUser = await prisma.user.findUniqueOrThrow({
+         where: { id: data.id },
+         include: {
+            client: true,
+            employee: true, 
+         }
+      }); 
+
+      return findUser
    }
 }
 

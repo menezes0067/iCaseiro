@@ -15,7 +15,7 @@ enum TypeUser {
 model User {
   id String @id @default(uuid())
   name String @db.VarChar(50) 
-  email String? @unique @db.VarChar(70)
+  email String @unique @db.VarChar(70)
   password String
   type TypeUser 
   client Client[] 

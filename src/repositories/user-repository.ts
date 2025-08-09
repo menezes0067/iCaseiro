@@ -35,7 +35,7 @@ class UserRepositoryPrisma implements UserRepository {
       }
    }
 
-   async getUserInformation(data: UserInformation): Promise<UserInformation> {
+   async getUserInformation(data: { id : string }): Promise<UserInformation> {
      const findUser = await prisma.user.findUniqueOrThrow({
          where: { id: data.id },
          include: {

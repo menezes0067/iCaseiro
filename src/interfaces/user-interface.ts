@@ -11,7 +11,7 @@ export interface User {
 }
 
 export interface UserCreate {
-    id?: string | undefined
+    id?: string
     name: string
     email: string
     password: string
@@ -31,5 +31,5 @@ export interface UserInformation {
 export interface UserRepository {
     create(data: UserCreate): Promise<User>
     findUserById(data: { id : string }): Promise<{ id: string | undefined }>
-    getUserInformation(data: UserInformation): Promise<UserInformation>
+    getUserInformation(data: {id : string }): Promise<UserInformation>
 }

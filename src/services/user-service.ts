@@ -18,4 +18,9 @@ export class UserService {
         return findId
     }
 
+    async getUserInformationExecute(data: { id: string }): Promise<UserInformation> {
+        const getUser = await this.userRepository.getUserInformation(data)
+
+        return getUser
+    } 
 }

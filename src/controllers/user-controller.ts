@@ -3,7 +3,6 @@ import { UserSchema, validationIdSchema } from "../schemas/user-schema";
 import { UserService } from "../services/user-service";
 import {FastifyRequest, FastifyReply} from "fastify";
 
-
 const userRepository = new UserRepositoryPrisma
 const userService = new UserService(userRepository)
 

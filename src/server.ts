@@ -9,5 +9,5 @@ app.register(ClientRoute)
 
 app.listen({
     host: '0.0.0.0',
-    port:3000
+    port: 3000
 }, () => console.log("Server is running port 3000"))

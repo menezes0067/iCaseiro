@@ -8,7 +8,7 @@ const categoryService = new CategoryService(categoryRepository)
 
 export const CreateCategory = async (req: FastifyRequest, rep: FastifyReply) => {
     try {
-        const categoryData = CategorySchema.parse(req.body) 
+        const categoryData = CategorySchema.parse(req.body)
         const category = await categoryService.executeCategory(categoryData)
         rep.code(201).send(category)
     } catch (error) {

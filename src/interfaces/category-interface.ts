@@ -4,7 +4,6 @@ export interface Category {
     description: string
 }
 
-
 export interface ICategoryRepostory {
-    createCategory(data: {id: number, name: string, description: string}): Promise<any>
+    createCategory(data: {id?: number | undefined, name: string, description: string}): Promise<any>
 }

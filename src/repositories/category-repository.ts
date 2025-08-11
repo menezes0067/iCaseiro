@@ -2,7 +2,7 @@ import { prisma } from "../database/prisma-client";
 import { ICategoryRepostory } from "../interfaces/category-interface";
 
 class CategoryRepositoryPrisma implements ICategoryRepostory {
-    async createCategory(data: { id: number; name: string; description: string; }): Promise<any> {
+    async createCategory(data: { id?: number | undefined; name: string; description: string; }): Promise<any> {
         const createdCategory = await prisma.category.create({
             data: {
                 id_category: data.id,

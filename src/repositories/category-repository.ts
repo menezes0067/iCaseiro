@@ -17,6 +17,14 @@ class CategoryRepositoryPrisma implements ICategoryRepostory {
             description: createdCategory.description 
         }
     }
+
+    async findCategoryByName(data: { name: string; }): Promise<boolean> {
+        const verifyCategoryName = await prisma.category.findFirst({
+            where: { name: data.name }
+        });
+
+        return !!verifyCategoryName
+    }
 }
 
 export { CategoryRepositoryPrisma }

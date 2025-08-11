@@ -4,7 +4,7 @@ export interface Employee {
 }
 
 export interface CreateEmployee {
-    id: string,
+    id?: string | undefined,
     employee_user_id: string
 }
 

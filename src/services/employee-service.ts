@@ -3,6 +3,7 @@ import { UserRepository } from "../interfaces/user-interface";
 
 export class EmployeeService {
     constructor(private employeeRepository: IEmployeeRepository, private userRepository: UserRepository){}  
+
     async execute(data: CreateEmployee): Promise<Employee> {
        const userEmployee = await this.userRepository.findUserById({ id: data.employee_user_id })  
 

@@ -1,8 +1,6 @@
-import { UserInfo } from 'os';
 import { prisma } from '../database/prisma-client';
 import { User, UserRepository, UserCreate, UserInformation} from '../interfaces/user-interface';
 import { v4 as uuidv4 } from 'uuid'
-import { map } from 'zod';
 
 class UserRepositoryPrisma implements UserRepository {
    async create(data: UserCreate): Promise<User> {

@@ -44,7 +44,11 @@ class UserRepositoryPrisma implements UserRepository {
                   birthDate: true,
                }
             },
-            employee: true, 
+            employee: {
+               select: {
+                  id: true
+               }
+            }, 
          },
       }); 
 

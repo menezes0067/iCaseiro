@@ -1,7 +1,7 @@
-import z, { uuidv4 } from "zod";
+import z from "zod";
 
 export const CategorySchema = z.object({
-    id: z.int().optional(),
+    id_category: z.string().optional(),
     name: z.string(),
     description: z.string()
 })

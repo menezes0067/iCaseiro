@@ -1,9 +1,9 @@
-import { CategoryRepositoryPrisma } from "../repositories/category-repository";
+import { Category, ICategoryRepostory } from "../interfaces/category-interface";
 
 export class CategoryService  {
-    constructor (private categoryRepository: CategoryRepositoryPrisma){}
+    constructor (private categoryRepository: ICategoryRepostory){}
    
-    async executeCategory(data: { id?: number | undefined, name: string, description: string}): Promise<any> {
+    async executeCategory(data: Omit<Category, 'id_category'>): Promise<any> {
         const verifyCategoryByName = await this.categoryRepository.findCategoryByName({ name: data.name })
 
         if(verifyCategoryByName) throw new Error('Category already exists')

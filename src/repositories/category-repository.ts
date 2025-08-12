@@ -1,18 +1,21 @@
 import { prisma } from "../database/prisma-client";
-import { ICategoryRepostory } from "../interfaces/category-interface";
+import { Category, ICategoryRepostory } from "../interfaces/category-interface";
+import { v4 as uuidv4 } from 'uuid'
 
 class CategoryRepositoryPrisma implements ICategoryRepostory {
-    async createCategory(data: { id?: number | undefined; name: string; description: string; }): Promise<any> {
+    async createCategory(data: Omit<Category, 'id_category'>): Promise<any> {
+        const id = uuidv4();
+
         const createdCategory = await prisma.category.create({
             data: {
-                id_category: data.id,
+                id_category: id,
                 name: data.name,
                 description: data.description,
             }
         });
 
         return {
-            id: createdCategory.id_category,
+            id_category: createdCategory.id_category,
             name: createdCategory.name,
             description: createdCategory.description 
         }

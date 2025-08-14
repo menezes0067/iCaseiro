@@ -1,4 +1,4 @@
-import { CreateMenu, IMenuRepository, Menu } from "../interfaces/menu-interface";
+import { CreateMenu, IMenuRepository, Menu, ReadMenuItem } from "../interfaces/menu-interface";
 
 export class MenuService {
    constructor(private menuRepository: IMenuRepository){} 
@@ -11,4 +11,9 @@ export class MenuService {
 
         return dataMenuCreation
     } 
+
+    async getAllMenuItemsWithCategories(): Promise<ReadMenuItem[]> {
+        const getItemsWithCategories = await this.menuRepository.getAllMenuItemsWithCategories()
+        return getItemsWithCategories
+    }
 }

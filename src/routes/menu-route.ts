@@ -1,6 +1,7 @@
 import { FastifyInstance } from "fastify";
-import { CreateMenu } from "../controllers/menu-controller";
+import { CreateMenu, GetMenu } from "../controllers/menu-controller";
 
- export default function MenuRoute(fastify: FastifyInstance) {
-    fastify.post('/menu', CreateMenu)
- }
+export default function MenuRoute(fastify: FastifyInstance) {
+  fastify.post("/menu", CreateMenu);
+  fastify.get("/menu", GetMenu);
+}

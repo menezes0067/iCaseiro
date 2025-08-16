@@ -1,10 +1,5 @@
 import { prisma } from "../database/prisma-client";
-import {
-  CreateMenu,
-  IMenuRepository,
-  Menu,
-  ReadMenuItem,
-} from "../interfaces/menu-interface";
+import { CreateMenu, IMenuRepository, Menu, ReadMenuItem} from "../interfaces/menu-interface";
 
 class MenuRepositoryPrisma implements IMenuRepository {
   async createMenuInRestaurant(data: Omit<CreateMenu, "id">): Promise<Menu> {
@@ -23,10 +18,7 @@ class MenuRepositoryPrisma implements IMenuRepository {
     };
   }
 
-  async verifyExistsOnMenu(data: {
-    name: string;
-    description: string;
-  }): Promise<boolean> {
+  async verifyExistsOnMenu(data: { name: string; description: string; }): Promise<boolean> {
     const existsOnMenu = await prisma.menu.findFirst({
       where: {
         name: data.name,

@@ -4,6 +4,7 @@ import ClientRoute from './routes/client-route';
 import EmployeeRoute from './routes/employee-route';
 import CategoryRoute from './routes/category-route';
 import MenuRoute from './routes/menu-route';
+import OrderRoute from './routes/order-route';
 
 const app: FastifyInstance = fastify({});
 
@@ -12,6 +13,7 @@ app.register(ClientRoute)
 app.register(EmployeeRoute)
 app.register(CategoryRoute)
 app.register(MenuRoute)
+app.register(OrderRoute)
 
 app.listen({
     host: '0.0.0.0',

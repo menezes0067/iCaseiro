@@ -1,5 +1,6 @@
+import { string } from "zod/v4/core/regexes.cjs";
 import { prisma } from "../database/prisma-client";
-import { CreateMenu, IMenuRepository, Menu, ReadMenuItem} from "../interfaces/menu-interface";
+import { CreateMenu, IMenuRepository, Menu, ReadMenuItem, UpdateMenuItem} from "../interfaces/menu-interface";
 
 class MenuRepositoryPrisma implements IMenuRepository {
   async createMenuInRestaurant(data: Omit<CreateMenu, "id">): Promise<Menu> {
@@ -43,6 +44,21 @@ class MenuRepositoryPrisma implements IMenuRepository {
     });
 
     return getAllItemsMenu;
+  }
+
+  async UpdateItemMenu(dataUpdateItem: Menu): Promise<UpdateMenuItem> {
+    const itemMenu = await prisma.menu.update({
+      where: {
+        id: dataUpdateItem.id
+      },
+      data: {
+        name: dataUpdateItem.name,
+        description: dataUpdateItem.description,
+        value : dataUpdateItem.value
+      }
+    });
+
+    return itemMenu
   }
 }
 

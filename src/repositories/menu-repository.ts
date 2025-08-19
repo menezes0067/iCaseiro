@@ -46,19 +46,19 @@ class MenuRepositoryPrisma implements IMenuRepository {
     return getAllItemsMenu;
   }
 
-  async UpdateItemMenu(dataUpdateItem: Menu): Promise<UpdateMenuItem> {
+  async UpdateItemMenu(id: string, dataUpdateItem: UpdateMenuItem): Promise<UpdateMenuItem> {
     const itemMenu = await prisma.menu.update({
       where: {
-        id: dataUpdateItem.id
+        id: id
       },
       data: {
         name: dataUpdateItem.name,
         description: dataUpdateItem.description,
         value : dataUpdateItem.value
-      }
+      },
     });
 
-    return itemMenu
+    return { ...itemMenu}
   }
 }
 

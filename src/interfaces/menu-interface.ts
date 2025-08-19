@@ -26,7 +26,6 @@ export interface ReadMenuItem {
 }
 
 export interface UpdateMenuItem{
-   id: string
    name: string
    description: string
    value: Decimal
@@ -37,5 +36,6 @@ export interface IMenuRepository {
     createMenuInRestaurant(data: Omit<CreateMenu, 'id'>): Promise<Menu>
     verifyExistsOnMenu(data: { name: string, description: string }): Promise<boolean>
     getAllMenuItemsWithCategories(): Promise<ReadMenuItem[]>
-    UpdateItemMenu(dataUpdateItem: Menu): Promise<UpdateMenuItem>
+    UpdateItemMenu(id: string, dataUpdateItem: UpdateMenuItem): Promise<UpdateMenuItem>
+
 }

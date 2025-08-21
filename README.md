@@ -4,6 +4,22 @@
 
 Desc
 
+## 📄 Váriaveis de ambiente
+Atenção na hora de criar usas váriaveis de ambiente no `.env` 
+
+```
+.env_example
+DB_HOST=localhost
+DB_USER=seu_usuario
+DB_PASSWORD=sua_senha
+DB_NAME=nome_do_banco
+
+# URL completa do seu banco de dados
+DATABASE_URL=postgresql://seu_usuario:sua_senha@localhost:5432/nome_do_banco
+```
+
+**Obs:** O arquivo `.env` já está no `.gitignore` e **não deve ser versionado**.
+
 ## 📦 Instalação do Projeto:
 
 Subindo containers do docker compose:
@@ -13,6 +29,7 @@ docker compose up -d
 ```
 
 Caso queira rodar localmente(dev):
+
 ```bash
 # Acessando backend
 cd backend/
@@ -33,6 +50,7 @@ pnpm run dev
 pnpm exec prisma studio
 ```
 
+
 ## 🗂️ Estrutura de Pastas
 
 ```
@@ -49,12 +67,10 @@ pnpm exec prisma studio
 │   │   ├── schemas/
 │   │   ├── services/
 │   │   └── server.ts
-│   ├── .env
 │   ├── .gitignore
 │   ├── docker-compose.yaml
 │   ├── Dockerfile
 │   ├── package.json
-│   ├── tasks.md
 │   └── tsconfig.json
 ├── frontend/
 │   ├── css/

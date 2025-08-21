@@ -1,0 +1,26 @@
+import { UserCreate, UserRepository, User, UserInformation } from "../interfaces/user-interface";
+
+export class UserService {
+    constructor(private userRepository: UserRepository){}
+
+    async execute(data: UserCreate): Promise<User> {
+        const user = await this.userRepository.create(data); 
+        return user
+    }   
+
+    async findExecute(data: { id: string }): Promise<{id: string | undefined }> {
+        const findId = await this.userRepository.findUserById(data)
+
+        if (!findId) {
+            throw new Error('User not found!')
+        }
+
+        return findId
+    }
+
+    async getUserInformationExecute(data: { id: string }): Promise<UserInformation> {
+        const getUser = await this.userRepository.getUserInformation(data)
+
+        return getUser
+    } 
+}

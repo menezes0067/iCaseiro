@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TypeUser {
+  CLIENT
+  EMPLOYEE
+}
+
+model User {
+  id String @id @default(uuid())
+  name String @db.VarChar(50) 
+  email String @unique @db.VarChar(70)
+  password String
+  type TypeUser 
+  client Client[] 
+  employee Employee[]
+}
+
+model Client {
+  id String @id @default(uuid())  
+  birthDate DateTime
+  orders Order[]
+  client_user_id String @unique
+  user User @relation(fields: [client_user_id], references: [id])
+}
+
+model Employee {
+  id String @id @default(uuid())
+  orders Order[]
+  employee_user_id String @unique
+  user User @relation(fields: [employee_user_id], references: [id]) 
+}
+
+model Category {
+  id_category String @id 
+  name String @db.VarChar(50)
+  description String? @db.VarChar(100)
+  menu Menu[]
+}
+
+model Menu{
+  id String @id @default(uuid())
+  name String @db.VarChar(50)
+  description String @db.VarChar(100)
+  value Decimal 
+  category_id String
+  category Category @relation(fields: [category_id], references: [id_category])
+  order_menu_item OrderOnItem[]
+}
+
+model Order {
+  id_order String @id @default(uuid())
+  createdAt DateTime @default(now())
+  status Int
+  client Client @relation(fields: [client_id], references: [id]) 
+  client_id String
+  employee Employee @relation(fields: [employee_id], references: [id])
+  employee_id String 
+  item OrderOnItem[] 
+}
+
+model OrderOnItem {
+  id String @id @default(uuid())
+  menu Menu @relation(fields: [menu_id], references: [id])
+  menu_id String
+  order Order @relation(fields: [order_id], references: [id_order])
+  order_id String
+  quantity Int
+  unit_price Decimal
+}

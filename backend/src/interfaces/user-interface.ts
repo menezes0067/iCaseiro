@@ -31,5 +31,6 @@ export interface UserInformation {
 export interface UserRepository {
     create(data: UserCreate): Promise<User>
     findUserById(data: { id : string }): Promise<{ id: string | undefined }>
+    validateUserPassword(data: {email: string, password: string}): Promise<boolean>
     getUserInformation(data: {id : string }): Promise<UserInformation>
 }

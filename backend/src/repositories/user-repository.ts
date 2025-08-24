@@ -1,15 +1,18 @@
 import { prisma } from '../database/prisma-client';
 import { User, UserRepository, UserCreate, UserInformation} from '../interfaces/user-interface';
-import { v4 as uuidv4 } from 'uuid'
+import { v4 as uuidv4 } from 'uuid';
+import bcrypt from 'bcrypt';
 
 class UserRepositoryPrisma implements UserRepository {
    async create(data: UserCreate): Promise<User> {
+      const hashedPassowrd = await bcrypt.hash(data.password, 10);
+
       const created = await prisma.user.create({ 
          data: {
             id: data.id || uuidv4(),
             name: data.name,
             email: data.email,
-            password: data.password,
+            password: hashedPassowrd,
             type: data.type
          }
       });
@@ -53,6 +56,17 @@ class UserRepositoryPrisma implements UserRepository {
       }); 
 
       return { ...findUser } as UserInformation
+   }
+
+   async validateUserPassword(data: { email: string; password: string; }): Promise<boolean> {
+      const userPassword = await prisma.user.findFirstOrThrow({
+         where: { email: data.email },
+         select: {
+            password: true
+         }
+      });
+
+      return !!userPassword
    }
 }
 

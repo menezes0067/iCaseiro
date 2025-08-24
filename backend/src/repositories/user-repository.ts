@@ -66,7 +66,9 @@ class UserRepositoryPrisma implements UserRepository {
          }
       });
 
-      return !!userPassword
+      const isPasswordValidate = bcrypt.compare(data.password, userPassword.password)
+
+      return isPasswordValidate 
    }
 }
 
